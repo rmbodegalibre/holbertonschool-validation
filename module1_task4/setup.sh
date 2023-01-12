@@ -8,5 +8,4 @@ rm hugo.deb
 apt-get install -y make
 
 # Running hugo
-hugo
-# make build
+make build
