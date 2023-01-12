@@ -8,3 +8,4 @@ echo '## Production Instructions
 Error: Error building site: logged 15 error(s)'
 echo "Makefile:2: recipe for target 'build' failed
 make: *** [build] Error 255"
+echo '["FAILS"]'
