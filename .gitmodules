@@ -4,12 +4,12 @@
 [submodule "module1_task1/themes/ananke"]
 	path = module1_task1/themes/ananke
 	url = https://github.com/theNewDynamic/gohugo-theme-ananke
-[submodule "themes/ananke"]
-	path = themes/ananke
-	url = https://github.com/theNewDynamic/gohugo-theme-ananke
 [submodule "module1_task2/themes/ananke"]
 	path = module1_task2/themes/ananke
 	url = https://github.com/theNewDynamic/gohugo-theme-ananke
+[submodule "module1_task3/themes/ananke"]
+	path = module1_task3/themes/ananke
+	url = https://github.com/theNewDynamic/gohugo-theme-ananke	
 [submodule "module1_task4/themes/ananke"]
 	path = module1_task4/themes/ananke
 	url = https://github.com/theNewDynamic/gohugo-theme-ananke
