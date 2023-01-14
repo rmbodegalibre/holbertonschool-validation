@@ -1,0 +1,22 @@
+name: module3_task1
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup
+        run: sudo module3_task1/setup.sh
+      - name: Build
+        run: cd module3_task1 && make build
+      - name: Clean
+        run: cd module3_task1 && make clean
+      - name: Post
+        run: cd module3_task1 && make POST_NAME=who-are-we POST_TITLE="Who are we" post
+      - name: Help
+        run: cd module3_task1 && make help
+      - name: Go at directory of site
+        run: cd module3_task0 && make help
