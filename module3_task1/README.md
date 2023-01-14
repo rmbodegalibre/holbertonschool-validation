@@ -80,3 +80,12 @@ help:	## Show this help.
 “Build”: Generate the website from the markdown and configuration files in the directory dist/.
 “Clean”: Cleanup the content of the directory dist/
 “Post”: Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME.
+
+## Build Workflow
+<p>To create a new workflow named "module3_task0" with the specified steps in GitHub Actions, you can do the following:</p>
+<ol>
+<li>Go to your repository on GitHub and click on the "Actions" tab.</li>
+<li>Click on the "New workflow" button.</li>
+<li>Give your workflow a name, for example "module3_task0" and select "Create a new workflow"</li>
+<li>You can use YAML code to write your workflow:</li>
+</ol>
