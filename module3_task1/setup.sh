@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Fixing install hugo error
 apt-get update && apt-get install -y curl make
