@@ -1,6 +1,8 @@
 name: module3_task1
 on:
   push:
+  schedule:
+    - cron: "0 10 * * *"
 
 jobs:
   build:
