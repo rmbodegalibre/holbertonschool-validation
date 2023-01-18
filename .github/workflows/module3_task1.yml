@@ -5,20 +5,10 @@ on:
     - cron: "0 10 * * *"
 
 jobs:
-  module3_task1:
+  Execute-make-commands:
+    name: Execute make commands
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup
-        run: sudo module3_task1/setup.sh
-      - name: Build
-        run: cd module3_task1 && make build
-      - name: Clean
-        run: cd module3_task1 && make clean
-      - name: Build
-        run: cd module3_task1 && make build
-      - name: Post
-        run: cd module3_task1 && make post POST_NAME="name" POST_TITLE="title"
-      - name: Help
-        run: cd module3_task1 && make help
+      - uses: actions/checkout@v3
+      - run: sudo module3_task1/setup.sh
+      - run: cd module3_task1 && make build
