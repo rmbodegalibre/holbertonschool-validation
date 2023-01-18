@@ -1,24 +1,9 @@
-.PHONY: ## build clean post
 build:	## “Build”: Generate the website from the markdown and configuration files in the directory dist/.
-	hugo --destination dist
+	hugo
 clean:	## “Clean”: Cleanup the content of the directory dist/
-	rm -rf .dist
+	rm -rf dist/
 post:	## “Post”: Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME.
-	rm -rf content/posts/$(POST_NAME).md
-	hugo new posts/$(POST_NAME).md
-	sed -i 's+title.*+title: "$(POST_TITLE)"+g' content/posts/$(POST_NAME).md
+	hugo new content/posts/$(POST_NAME).md
+	sed -i 's/title:.*/title: "$(POST_TITLE)"/' content/posts/$(POST_NAME).md
 help:	## Show this help.
-	cat README.md
-package: ## Zip website
-	@hugo
-	@zip awesome-website.zip ./dist
-
-lint: ## Lint with markdown
-	@markdownlint README.md
-	@markdownlint DEPLOY.md
-
-unit-tests: ## Test file
-
-integration-tests: ## Integration file
-
-validate: ## validate
+	@fgrep -h "##" $(MAKEFILE_LIST) | sed -e 's/\\$$//' | sed -e 's/##//'
