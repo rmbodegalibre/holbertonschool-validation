@@ -1,27 +1,22 @@
-.PHONY: ## build clean post
-
 build: ## Build the website
-	hugo -d dist/
+	hugo
 
 clean: ## Clean the build directory
-	rm -r dist/*
+	rm -r dist/
 
-post: ## Create a new blog post
+post: ## Create a new blog post with filename and title come from the environment variables POST_TITLE and POST_NAME
 	hugo new posts/$(POST_NAME).md
 ## Update the title of the new post
-	sed -i "s/title: .*/title: $(POST_TITLE)/" ./content/posts/$(POST_NAME).md
+	sed -i "s/title: .*/title: $(POST_TITLE)/" content/posts/$(POST_NAME).md
 
-help: ## Show commands usage information
-	@echo "Available targets:"
-	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//' | awk '{ printf "  %-20s %s\n", $$1, $$2 }'
+help:	## View all make commands
+	@fgrep -h "##" $(MAKEFILE_LIST) | sed -e 's/\\$$//' | sed -e 's/##//'
 
-package: ## Zip website
-	@hugo
-	@zip awesome-website.zip ./dist
+package: build ## Produces a file awesome-website.zip, containing the binary awesome-api and the directory dist/ directory
+	zip -r awesome-website.zip dist
 
 lint: ## Lint with markdown
-	@markdownlint README.md
-	@markdownlint DEPLOY.md
+	markdownlint README.md DEPLOY.md
 
 unit-tests: ## Test file
 

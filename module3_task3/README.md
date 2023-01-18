@@ -1,64 +1,47 @@
-# Build a website with hugo
+# Documentation
 
 ## Prerequisites
 
-```bash
-Ubunto-20.04
-Install hugo in a higher version
-```
-
-These distributions are for the site/web page to work properly.
+- GoHugo
+- Go
+- Git
 
 ## Lifecycle
 
-The life cycle of the web site is represented in the different rules and their
-functions within the Makefile.
+## Build
 
-### help
+Generate the website from the markdown and configuration files in the directory dist/
 
-With this rule in the Makefile we can create a list of all the rules and a brief
-description of how they work.
+    make build
 
-```bash
-make help
-```
+## Clean
 
-It should look something like this:
+Cleanup the content of the directory dist/
 
-```bash
-Available functions
-build: build: Create all content in the website
-clean: Revome all content in the website
-post: Create a blog
-help: Helpful list of commands
-```
+    make clean
 
-### Build
+## Post
 
-With this rule in the Makefile we can create all the necessary files to be
-able to run our website, with the following command we execute the command.
+Create a new blog post whose filename and title come from the environment
+variables POST_TITLE and POST_NAME
 
-```bash
-make build
-```
+    make post
 
-### Post
+## Package
 
-With this rule in the Makefile we can create new posts/blogs that can be
-displayed on our website, they can be created with the following command.
+Produces a file awesome-website.zip, containing the binary awesome-api
+and the directory dist/ directory
 
-```bash
-make POST_NAME=who-are-we POST_TITLE="Who are we" post
-```
+    make package
 
-The POST_NAME is the name of the file and the POST_TITLE is the title of
-the file.
+## Lint
 
-### Clean
+Lint markdown
 
-With this rule in the Makefile we can delete the files that were generated
-to create the web site, with the rule build
+    make lint
 
-```bash
-make clean
-```
+## Help
+
+View all make commands
+
+    make help

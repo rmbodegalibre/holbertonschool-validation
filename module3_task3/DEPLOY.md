@@ -1,16 +1,34 @@
-# Operation team´s FAQ
+# Deploy Documentation
 
-## What is in the archive and how to unarchive it?
+## Zip File
 
-- `awesome-website.zip`
+The zip file contain the dist folder and the executable.
+To unarchive it use:
 
-## What are the commands to start and stop the application?
+    unzip awesome-website.zip
 
-- `make build`
-- `make clean`
+## Start and Stop application
 
-## How to customize where the application logs are written?
+Create Hugo Website:
 
-## How to “quickly” verify that the application is running (healthcheck)?
+    make build
 
-## Create a release with the archive and content of DEPLOY.md, triggered by a tag
+Stop Hugo Website:
+
+    make clean
+
+## Customize logs
+
+You can customize the logs of the app
+
+## Verify that the app is running
+
+You can use
+
+    hugo server
+
+To see if the app is running
+
+## Deploy zip tag
+
+When a tag 1.0.0 is created the zip file with the DEPLOY will be available
