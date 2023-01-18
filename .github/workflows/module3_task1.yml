@@ -2,10 +2,9 @@ name: module3_task1
 on:
   push:
     branches:
-      - master
+      - main
   schedule:
-    - cron: '0 10 * * *'
-
+    - cron: '0 0 * * *'
 jobs:
   Execute-make-commands:
     name: Execute make commands
