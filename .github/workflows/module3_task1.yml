@@ -17,6 +17,6 @@ jobs:
       - name: Build
         run: cd module3_task1 && make build
       - name: Post
-        run: cd module3_task1 && make POST_NAME=who-are-we POST_TITLE="Who are we" post
+        run: cd module3_task1 && make post POST_NAME="name" POST_TITLE="title"
       - name: Help
         run: cd module3_task1 && make help
