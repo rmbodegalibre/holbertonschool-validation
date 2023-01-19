@@ -16,8 +16,8 @@ package: build ## Produces a file awesome-website.zip, containing the binary awe
 	zip -r awesome-website.zip dist
 
 lint: ## Lint with markdown
-	@markdownlint README.md
-	@markdownlint DEPLOY.md
+	lint README.md
+	lint DEPLOY.md
 
 unit-tests: ## Test file
 
