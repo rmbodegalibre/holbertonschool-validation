@@ -2,8 +2,6 @@ name: module3_task3
 
 on:
   push:
-    branches:
-      - main
     tags:
       - "1.0.0"
   schedule:
@@ -12,11 +10,26 @@ on:
 permissions: read-all
 
 jobs:
-  Create-tag-release:
-    name: Create tag release
+  release:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v3
+      - uses: softprops/gh-release@v1
+        with:
+          tag_name: 1.0.0
+          release_name: Release 1.0.0
+      - uses: actions/upload-artifact@v2
+        with:
+          name: awesome-website.zip
+          path: module3_task3/awesome-website.zip          
+      - run: |
+          DEPLOY_MD=$(cat module3_task3/DEPLOY.md)
+          echo "::set-output name=deploy_md::$DEPLOY_MD"
+        id: get-deploy-md
+      - uses: actions/create-release-note@v1
+        with:
+          release_id: ${{ steps.create-release.outputs.release_id }}
+          note: ${{ steps.get-deploy-md.outputs.deploy_md }}
       - run: sudo module3_task3/setup.sh
       - run: cd module3_task3 && make build
       - run: cd module3_task3 && make package
@@ -24,14 +37,3 @@ jobs:
       - run: cd module3_task3 && make unit-tests
       - run: cd module3_task3 && make integration-tests
       - run: cd module3_task3 && make validate
-      - uses: actions/upload-artifact@v3
-        with:
-          path: module3_task3/awesome-website.zip
-      - uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/1.0.0')
-        with:
-          tag_name: '1.0.0'
-          files: |
-            module3_task3/awesome-website.zip
-            module3_task3/DEPLOY.md
-          body_path: module3_task3/DEPLOY.md
