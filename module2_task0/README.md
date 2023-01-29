@@ -3,7 +3,7 @@
 # Prerequisites
 Go and Make installed
 
-## Life cycle
+## Lifecycle
 build:	 “Build”: compile the source code of the application to a binary named awesome-api (the name awesome-api comes from the command go mod init github.com/<your github handle>/awesome-api) with the command go build.
 run:	 “Run”: Run the application in background by executing the binary awesome-api, and write logs into a file named awesome.log with the command ./awesome-api >./awesome.log 2>&1 &.
 stop:	 "Stop":  Stop the application with the command kill XXXXX where XXXXX is the Process ID of the application. For instance: kill "$(pgrep awesome-api)"
