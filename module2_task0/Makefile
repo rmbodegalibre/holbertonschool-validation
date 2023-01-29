@@ -6,10 +6,11 @@ run:	## “Run”: Run the application in background by executing the binary awe
 stop:	## "Stop":  Stop the application with the command kill XXXXX where XXXXX is the Process ID of the application. For instance: kill "$(pgrep awesome-api)"
 	kill "$(shell pgrep awesome-api)"
 clean:	## “Clean”: Delete the binary awesome-api and the log file awesome-api.log
+	make stop
 	rm ./awesome-api awesome.log
 test:	## You want to test it to ensure that it behaves as expected. With the application started, you may want to use the command line curl (or your web browser, or the command wget or any other HTTP client):
-	-curl http://localhost:9999
-	-curl http://localhost:9999/health
+	curl http://localhost:9999
+	curl http://localhost:9999/health
 help:	##	Print this help message
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
