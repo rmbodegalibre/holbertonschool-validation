@@ -1,30 +1,56 @@
-.PHONY: ## build clean post
+go-build:	## Builds the API binary file using go
+	go mod init github.com/Apinedas/awesome-api
+	go get github.com/gorilla/mux
+	go build
 
-build: ## Build the website
-	hugo -d dist/
+hugo-build:		## Builds a website using gohugo on the dist folder
+	hugo
 
-clean: ## Clean the build directory
-	rm -r dist/*
+build:	## Builds all that is needed for website
+	-make go-build
+	make hugo-build
 
-post: ## Create a new blog post
-	hugo new posts/$(POST_NAME).md
-## Update the title of the new post
-	sed -i "s/title: .*/title: $(POST_TITLE)/" ./content/posts/$(POST_NAME).md
+post:		## Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME
+	hugo new posts/${POST_NAME}.md
+	sed -i "s/title: .*/title: ${POST_TITLE}/" ./content/posts/${POST_NAME}.md
 
-help: ## Show commands usage information
-	@echo "Available targets:"
-	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//' | awk '{ printf "  %-20s %s\n", $$1, $$2 }'
+check:  ## Lints and check for dead links on markdowns using markdownlint-cli and markdown-link-check
+	markdownlint ./content/posts/*.md
+	markdown-link-check ./content/posts/*.md
 
-package: ## Zip website
-	@hugo
-	@zip awesome-website.zip ./dist
+validate: ## Validates dist/index.html using W3C Hbtn validator
+	-make build
+	-git clone https://github.com/holbertonschool/W3C-Validator.git
+	-./W3C-Validator/w3c_validator.py ./dist/index.html
+	-rm -rf ./W3C-Validator
 
-lint: ## Lint with markdown
-	@markdownlint README.md
-	@markdownlint DEPLOY.md
+run:	## Runs the built binary and send everything to awesome.log
+	./awesome-api >./awesome.log 2>&1 &
 
-unit-tests: ## Test file
+stop:	## Terminates the execution of awesome-api
+	kill $(shell pgrep awesome-api)
 
-integration-tests: ## Integration file
+clean:	## Removes binary and logs
+	-make stop
+	-rm -rf awesome-api awesome.log coverage* go* awesome-website.zip ./dist
 
-validate: ## validate
+test:	## Tests API using go test
+	-make build
+	make unit-tests
+	make integration-tests
+
+lint:	## Lints all the go files using golangci-lint
+	markdownlint README.md DEPLOY.md
+
+unit-tests:	## Runs implemented unit test using go test
+	go test -v -short -coverprofile=coverage-units.out
+
+integration-tests:	## Runs integration test using go test
+	go test -v -coverprofile=coverage-integrations.out
+
+package:  ## Generates a zip archive to deployment
+	-make build
+	zip awesome-website.zip awesome-api dist/
+
+help:	## Show this help message
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
