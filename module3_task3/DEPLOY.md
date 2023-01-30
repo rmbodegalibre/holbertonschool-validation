@@ -1,35 +1,16 @@
-# Deploy Documentation
+# Deployment FAQ
 
-## Zip File
+- The archive awesome-website.zip contains an executable file awesome-api and
+a directory dist containing all the files needed to deploy the website.
 
-The zip file contain the dist folder and the executable.
-To unarchive it use:
+- To start the app run `unzip awesome-website.zip` and then run
+`./awesome-api &`
 
-    unzip awesome-website.zip
+- To save logs to `awesome.log` file, run `./awesome-api >./awesome.log 2>&1 &`
 
-## Start and Stop application
+- To change the log file just change the name on command
 
-Create Hugo Website:
+- To verify application is running run `curl http://localhost:9999/health`
+and you should see 'ALIVE'
 
-    make build
-
-Stop Hugo Website:
-
-    make clean
-
-# Operation team´s FAQ
-
-## What is in the archive and how to unarchive it?
-
-- `awesome-website.zip`
-
-## What are the commands to start and stop the application?
-
-- `make build`
-- `make clean`
-
-## How to customize where the application logs are written?
-
-## How to “quickly” verify that the application is running (healthcheck)?
-
-## Create a release with the archive and content of DEPLOY.md, triggered by a tag
+- A zip file is generated when the tag 1.0.0 is pushed to Github
