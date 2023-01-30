@@ -17,18 +17,19 @@ Stop Hugo Website:
 
     make clean
 
-## Customize logs
+# Operation team´s FAQ
 
-You can customize the logs of the app
+## What is in the archive and how to unarchive it?
 
-## Verify that the app is running
+- `awesome-website.zip`
 
-You can use
+## What are the commands to start and stop the application?
 
-    hugo server
+- `make build`
+- `make clean`
 
-To see if the app is running
+## How to customize where the application logs are written?
 
-## Deploy zip tag
+## How to “quickly” verify that the application is running (healthcheck)?
 
-When a tag 1.0.0 is created the zip file with the DEPLOY will be available
+## Create a release with the archive and content of DEPLOY.md, triggered by a tag
