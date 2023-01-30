@@ -1,4 +1,5 @@
-build:	check	## “Build”: Generate the website from the markdown and configuration files in the directory dist/.
+build:	## “Build”: Generate the website from the markdown and configuration files in the directory dist/.
+	make check
 	hugo --destination dist
 clean:	## “Clean”: Cleanup the content of the directory dist/
 	rm -rf .dist

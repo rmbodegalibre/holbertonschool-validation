@@ -76,6 +76,7 @@ clean:	## “Clean”: Cleanup the content of the directory dist/
 post:	## “Post”: Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME.
 
 check:  Lints and check for dead links on markdown using madkdownlint-cli and markdownlink-check
+
 validate:  Validates dist/index.html using W3C hbtn validator
 
 help:	## Show this help.
